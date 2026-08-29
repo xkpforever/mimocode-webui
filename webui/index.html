@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" data-color-scheme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MIMO Code WebUI</title>
+    <script>
+      // Theme & locale preload — prevent flash
+      ;(function () {
+        var scheme = localStorage.getItem('mimocode-color-scheme') || 'dark'
+        var themeId = localStorage.getItem('mimocode-theme-id') || 'oc-2'
+        var locale = localStorage.getItem('mimocode-locale') || 'en'
+        document.documentElement.dataset.colorScheme = scheme
+        document.documentElement.dataset.theme = themeId
+        document.documentElement.lang = locale === 'zh' ? 'zh-CN' : 'en'
+        document.documentElement.classList.add(scheme === 'dark' ? 'dark' : 'light')
+      })()
+    </script>
+  </head>
+  <body class="bg-[var(--background-base)] text-[var(--text-strong)] font-sans antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

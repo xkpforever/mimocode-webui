@@ -1,0 +1,482 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   MIMO Code Design Token System
+   Heavily inspired by MIMO Code's CSS custom properties,
+   adapted for the WebUI context.
+   ============================================================ */
+
+:root {
+  /* ---- Layout ---- */
+  --sidebar-width: 280px;
+  --sidebar-collapsed-width: 0px;
+  --topbar-height: 48px;
+  --statusbar-height: 32px;
+
+  /* ---- Typography ---- */
+  --font-family-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
+
+  /* ---- Radii ---- */
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.625rem;
+
+  /* ---- Shadows (light) ---- */
+  --shadow-xs: 0 1px 2px -0.5px hsl(0 0% 0% / 0.04),
+    0 0.5px 1.5px 0 hsl(0 0% 0% / 0.025), 0 1px 3px 0 hsl(0 0% 0% / 0.05);
+  --shadow-md: 0 6px 12px -2px hsl(0 0% 0% / 0.075),
+    0 4px 8px -2px hsl(0 0% 0% / 0.075), 0 1px 2px hsl(0 0% 0% / 0.1);
+  --shadow-lg: 0 16px 48px -6px hsl(0 0% 0% / 0.05),
+    0 6px 12px -2px hsl(0 0% 0% / 0.025), 0 1px 2.5px hsl(0 0% 0% / 0.025);
+  --shadow-xs-border: 0 0 0 1px var(--border-base),
+    0 1px 2px -1px rgba(19, 16, 16, 0.04), 0 1px 2px 0 rgba(19, 16, 16, 0.06),
+    0 1px 3px 0 rgba(19, 16, 16, 0.08);
+}
+
+/* ============================================================
+   LIGHT THEME (default)
+   ============================================================ */
+:root,
+[data-color-scheme='light'] {
+  color-scheme: light;
+
+  /* Backgrounds */
+  --background-base: #f8f8f8;
+  --background-weak: #f3f3f3;
+  --background-strong: #fcfcfc;
+  --background-stronger: #fcfcfc;
+
+  /* Surfaces */
+  --surface-base: rgba(0, 0, 0, 0.031);
+  --surface-base-hover: rgba(0, 0, 0, 0.059);
+  --surface-base-active: rgba(0, 0, 0, 0.051);
+  --surface-inset-base: rgba(0, 0, 0, 0.034);
+  --surface-raised-strong: #fcfcfc;
+  --surface-raised-strong-hover: #ffffff;
+  --surface-weak: rgba(0, 0, 0, 0.051);
+  --surface-weaker: rgba(0, 0, 0, 0.071);
+  --surface-strong: #ffffff;
+
+  /* Interactive surfaces */
+  --surface-interactive-base: #ecf3ff;
+  --surface-interactive-hover: #e0eaff;
+  --surface-interactive-weak: #f7faff;
+
+  /* Semantic surfaces */
+  --surface-success-base: #dbfed7;
+  --surface-success-weak: #f0feee;
+  --surface-success-strong: #12c905;
+  --surface-warning-base: #fcf3cb;
+  --surface-warning-weak: #fdfaec;
+  --surface-critical-base: #fff2f0;
+  --surface-critical-weak: #fff8f6;
+  --surface-critical-strong: #fc533a;
+  --surface-info-base: #fdecfe;
+  --surface-float-base: #161616;
+  --surface-float-hover: #1c1c1c;
+
+  /* Inputs */
+  --input-base: #fcfcfc;
+  --input-hover: #f8f8f8;
+  --input-active: #fcfdff;
+  --input-selected: #e0eaff;
+  --input-focus: #fcfdff;
+  --input-disabled: #ededed;
+
+  /* Text */
+  --text-base: #6f6f6f;
+  --text-weak: #8f8f8f;
+  --text-weaker: #c7c7c7;
+  --text-strong: #171717;
+  --text-stronger: #171717;
+  --text-invert-base: #f8f8f8;
+  --text-invert-strong: #fcfcfc;
+  --text-interactive-base: #034cff;
+
+  /* Semantic text */
+  --text-on-success-base: #2dba26;
+  --text-on-critical-base: #ed4831;
+  --text-on-warning-base: rgba(0, 0, 0, 0.574);
+  --text-on-info-base: rgba(0, 0, 0, 0.574);
+
+  /* Buttons */
+  --button-primary-base: #171717;
+  --button-secondary-base: #fcfcfc;
+  --button-secondary-hover: #f8f8f8;
+  --button-ghost-hover: rgba(0, 0, 0, 0.031);
+
+  /* Borders */
+  --border-base: rgba(0, 0, 0, 0.162);
+  --border-hover: rgba(0, 0, 0, 0.236);
+  --border-active: rgba(0, 0, 0, 0.46);
+  --border-selected: rgba(3, 76, 255, 0.99);
+  --border-weak-base: #e5e5e5;
+  --border-weak-hover: rgba(0, 0, 0, 0.118);
+
+  /* Icons */
+  --icon-base: #8f8f8f;
+  --icon-hover: #6f6f6f;
+  --icon-active: #171717;
+  --icon-weak-base: #dbdbdb;
+  --icon-strong-base: #171717;
+  --icon-interactive-base: #034cff;
+  --icon-success-base: #7add71;
+  --icon-warning-base: #ebb76e;
+  --icon-critical-base: #ed4831;
+  --icon-info-base: #e6a8ea;
+
+  /* Agent icon colors */
+  --icon-agent-plan-base: #a753ae;
+  --icon-agent-docs-base: #fcb239;
+  --icon-agent-ask-base: #2090f5;
+  --icon-agent-build-base: #034cff;
+
+  /* Syntax (light) */
+  --syntax-comment: var(--text-weak);
+  --syntax-string: #006656;
+  --syntax-keyword: var(--text-weak);
+  --syntax-primitive: #fb4804;
+  --syntax-variable: var(--text-strong);
+  --syntax-property: #ed6dc8;
+  --syntax-type: #596600;
+
+  /* Markdown (light) */
+  --markdown-heading: #d68c27;
+  --markdown-text: #1a1a1a;
+  --markdown-link: #3b7dd8;
+  --markdown-code: #3d9a57;
+  --markdown-block-quote: #b0851f;
+}
+
+/* ============================================================
+   DARK THEME
+   ============================================================ */
+[data-color-scheme='dark'] {
+  color-scheme: dark;
+
+  /* Backgrounds */
+  --background-base: #101010;
+  --background-weak: #1e1e1e;
+  --background-strong: #121212;
+  --background-stronger: #151515;
+
+  /* Surfaces */
+  --surface-base: rgba(255, 255, 255, 0.031);
+  --surface-base-hover: rgba(255, 255, 255, 0.039);
+  --surface-base-active: rgba(255, 255, 255, 0.059);
+  --surface-inset-base: rgba(0, 0, 0, 0.5);
+  --surface-raised-strong: rgba(255, 255, 255, 0.078);
+  --surface-raised-strong-hover: rgba(255, 255, 255, 0.129);
+  --surface-weak: rgba(255, 255, 255, 0.078);
+  --surface-weaker: rgba(255, 255, 255, 0.102);
+  --surface-strong: #242424;
+
+  /* Interactive surfaces */
+  --surface-interactive-base: #091f52;
+  --surface-interactive-hover: #091f52;
+  --surface-interactive-weak: #0b1730;
+
+  /* Semantic surfaces */
+  --surface-success-base: #062d04;
+  --surface-success-weak: #0a1e08;
+  --surface-success-strong: #12c905;
+  --surface-warning-base: #fdf3cf;
+  --surface-warning-weak: #fdfaed;
+  --surface-critical-base: #1f0603;
+  --surface-critical-weak: #28110c;
+  --surface-critical-strong: #fc533a;
+  --surface-info-base: #1f1745;
+  --surface-float-base: #161616;
+  --surface-float-hover: #1c1c1c;
+
+  /* Inputs */
+  --input-base: #1c1c1c;
+  --input-hover: #1c1c1c;
+  --input-active: #091123;
+  --input-selected: #0b1730;
+  --input-focus: #091123;
+  --input-disabled: #282828;
+
+  /* Text */
+  --text-base: rgba(255, 255, 255, 0.618);
+  --text-weak: rgba(255, 255, 255, 0.422);
+  --text-weaker: rgba(255, 255, 255, 0.284);
+  --text-strong: rgba(255, 255, 255, 0.936);
+  --text-stronger: rgba(255, 255, 255, 0.936);
+  --text-invert-base: #a0a0a0;
+  --text-invert-strong: #ededed;
+  --text-interactive-base: #9dbefe;
+
+  /* Semantic text */
+  --text-on-success-base: #12c905;
+  --text-on-critical-base: #fc533a;
+  --text-on-warning-base: rgba(255, 255, 255, 0.603);
+  --text-on-info-base: rgba(255, 255, 255, 0.603);
+
+  /* Buttons */
+  --button-primary-base: #171717;
+  --button-secondary-base: #1c1c1c;
+  --button-secondary-hover: #232323;
+  --button-ghost-hover: rgba(255, 255, 255, 0.059);
+
+  /* Borders */
+  --border-base: rgba(255, 255, 255, 0.162);
+  --border-hover: rgba(255, 255, 255, 0.236);
+  --border-active: rgba(255, 255, 255, 0.46);
+  --border-selected: rgba(157, 190, 254, 0.99);
+  --border-weak-base: rgba(255, 255, 255, 0.118);
+  --border-weak-hover: rgba(255, 255, 255, 0.162);
+
+  /* Icons */
+  --icon-base: rgba(255, 255, 255, 0.618);
+  --icon-hover: rgba(255, 255, 255, 0.8);
+  --icon-active: rgba(255, 255, 255, 0.936);
+  --icon-weak-base: rgba(255, 255, 255, 0.284);
+  --icon-strong-base: rgba(255, 255, 255, 0.936);
+  --icon-interactive-base: #9dbefe;
+  --icon-success-base: #37db2e;
+  --icon-warning-base: #fcd53a;
+  --icon-critical-base: #fc533a;
+  --icon-info-base: #edb2f1;
+
+  /* Agent icon colors */
+  --icon-agent-plan-base: #edb2f1;
+  --icon-agent-docs-base: #fcd53a;
+  --icon-agent-ask-base: #8ec2fc;
+  --icon-agent-build-base: #9dbefe;
+
+  /* Syntax (dark) */
+  --syntax-comment: var(--text-weak);
+  --syntax-string: #7ddb9a;
+  --syntax-keyword: var(--text-weak);
+  --syntax-primitive: #fb4804;
+  --syntax-variable: var(--text-strong);
+  --syntax-property: #ed6dc8;
+  --syntax-type: #c4e068;
+
+  /* Markdown (dark) */
+  --markdown-heading: #fab283;
+  --markdown-text: rgba(255, 255, 255, 0.85);
+  --markdown-link: #9dbefe;
+  --markdown-code: #7ddb9a;
+  --markdown-block-quote: #fab283;
+}
+
+/* ============================================================
+   Base Styles
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-color: var(--border-weak-base);
+}
+
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--background-base);
+  color: var(--text-strong);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family-sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-base);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--border-selected);
+  outline-offset: -1px;
+}
+
+/* Selection */
+::selection {
+  background: var(--surface-interactive-base);
+  color: var(--text-strong);
+}
+
+/* ---- Glass utility ---- */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+[data-color-scheme='dark'] .glass {
+  background: rgba(16, 16, 16, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Markdown content */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+  color: var(--markdown-heading);
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content p {
+  color: var(--markdown-text);
+  line-height: 1.7;
+  margin-bottom: 0.75em;
+}
+
+.markdown-content a {
+  color: var(--markdown-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.markdown-content code {
+  color: var(--markdown-code);
+  font-family: var(--font-family-mono);
+  font-size: 0.8125em;
+  padding: 0.1em 0.3em;
+  border-radius: var(--radius-sm);
+  background: var(--surface-base);
+}
+
+.markdown-content pre {
+  background: var(--surface-inset-base);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-md);
+  padding: 1em;
+  overflow-x: auto;
+  margin: 0.75em 0;
+}
+
+.markdown-content pre code {
+  background: none;
+  padding: 0;
+  color: var(--text-strong);
+  font-size: 0.8125em;
+  line-height: 1.6;
+}
+
+.markdown-content blockquote {
+  border-left: 3px solid var(--markdown-block-quote);
+  padding-left: 1em;
+  margin: 0.75em 0;
+  color: var(--text-base);
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  padding-left: 1.5em;
+  margin: 0.5em 0;
+}
+
+.markdown-content li {
+  margin-bottom: 0.25em;
+}
+
+.markdown-content img {
+  max-width: 100%;
+  border-radius: var(--radius-md);
+}
+
+/* ---- Agent agent type colors ---- */
+.agent-build {
+  --agent-color: var(--icon-agent-build-base);
+}
+.agent-plan {
+  --agent-color: var(--icon-agent-plan-base);
+}
+.agent-compose {
+  --agent-color: var(--icon-agent-docs-base);
+}
+
+/* ---- Animations ---- */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.2s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.15s ease-out;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* ─── Syntax highlighting ─── */
+.syn-kw { color: #c678dd; }  /* keywords */
+.syn-str { color: #98c379; }  /* strings */
+.syn-num { color: #d19a66; }  /* numbers */
+.syn-cmt { color: #5c6370; font-style: italic; }  /* comments */
+.syn-fn { color: #61afef; }  /* built-in functions */
+
+.dark .syn-kw { color: #c678dd; }
+.dark .syn-str { color: #98c379; }
+.dark .syn-num { color: #d19a66; }
+.dark .syn-cmt { color: #5c6370; }
+.dark .syn-fn { color: #61afef; }
+
+.light .syn-kw { color: #a626a4; }
+.light .syn-str { color: #50a14f; }
+.light .syn-num { color: #986801; }
+.light .syn-cmt { color: #a0a1a7; font-style: italic; }
+.light .syn-fn { color: #4078f2; }
