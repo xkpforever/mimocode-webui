@@ -259,4 +259,9 @@ export const dict: Record<string, string> = {
   'message.collapsed': '内容过长已折叠...',
   'message.expand': '展开完整内容...',
   'message.collapse': '收起',
+
+  'model.select': '选择模型',
+  'model.search': '搜索模型...',
+  'model.noModels': '暂无可用模型',
+  'model.noModelsDesc': '请检查服务器连接或在配置中添加 Provider',
 }

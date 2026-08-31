@@ -258,4 +258,9 @@ export const dict: Record<string, string> = {
   'message.collapsed': 'Content collapsed...',
   'message.expand': 'Show full content',
   'message.collapse': 'Collapse',
+
+  'model.select': 'Select Model',
+  'model.search': 'Search models...',
+  'model.noModels': 'No models available',
+  'model.noModelsDesc': 'Check server connection or add providers in config',
 }

@@ -223,10 +223,12 @@ interface SettingsState {
   theme: string
   colorScheme: 'light' | 'dark' | 'system'
   thinkingMode: ThinkingMode
+  selectedModel: string
   setServerUrl: (url: string) => void
   setTheme: (theme: string) => void
   setColorScheme: (scheme: 'light' | 'dark' | 'system') => void
   setThinkingMode: (mode: ThinkingMode) => void
+  setSelectedModel: (model: string) => void
 }
 
 function getInitialServerUrl(): string {
@@ -243,6 +245,7 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   theme: localStorage.getItem('mimocode-theme-id') || 'oc-2',
   colorScheme: (localStorage.getItem('mimocode-color-scheme') as 'light' | 'dark' | 'system') || 'dark',
   thinkingMode: (localStorage.getItem('mimocode-thinking-mode') as ThinkingMode) || 'fast',
+  selectedModel: localStorage.getItem('mimocode-selected-model') || '',
 
   setServerUrl: (url) => {
     localStorage.setItem('mimocode-server-url', url)
@@ -266,6 +269,10 @@ export const useSettingsStore = create<SettingsState>((set) => ({
   setThinkingMode: (mode) => {
     localStorage.setItem('mimocode-thinking-mode', mode)
     set({ thinkingMode: mode })
+  },
+  setSelectedModel: (model) => {
+    localStorage.setItem('mimocode-selected-model', model)
+    set({ selectedModel: model })
   },
 }))
 

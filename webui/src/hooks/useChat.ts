@@ -199,7 +199,7 @@ export function useChat(existingSessionId?: string) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               parts,
-              modelRef: modeToModelRef(useSettingsStore.getState().thinkingMode),
+              modelRef: useSettingsStore.getState().selectedModel || modeToModelRef(useSettingsStore.getState().thinkingMode),
             }),
             signal: controller.signal,
           })

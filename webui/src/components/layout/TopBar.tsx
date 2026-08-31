@@ -9,6 +9,7 @@ import {
   Search,
 } from 'lucide-react'
 import { AgentSelector } from '../agent/AgentSelector'
+import { ModelSelector } from '../model/ModelSelector'
 import { useSettingsStore } from '../../stores'
 import { useI18n } from '../../context/i18n'
 
@@ -64,6 +65,10 @@ export function TopBar({ onMenuClick, onTerminalClick, onCommandPalette, termina
         <div className="w-px h-5 mx-1" style={{ background: 'var(--border-weak-base)' }} />
 
         <AgentSelector />
+
+        <div className="w-px h-5 mx-1" style={{ background: 'var(--border-weak-base)' }} />
+
+        <ModelSelector />
 
         {/* Command Palette trigger */}
         <button
